@@ -6,9 +6,10 @@ import { GroupCard } from '@components/GroupCard';
 import { Container } from './styles';
 import { Alert, FlatList } from 'react-native';
 import { useState } from 'react';
+import { ListEmpty } from '@components/ListEmpty';
 
 export function Groups() {
-  const [ groups, setGroups ] = useState<string[]>(['Galera da Rocket', 'Aposendados'])
+  const [ groups, setGroups ] = useState<string[]>([])
 
   return (
     <Container>
@@ -26,6 +27,12 @@ export function Groups() {
           <GroupCard 
             title={item.item} 
             onPress={() => Alert.alert("Open Card")}
+          />
+        )}
+        contentContainerStyle={groups.length === 0 && { flex: 1}}
+        ListEmptyComponent={() => (
+          <ListEmpty 
+            message='Que tal cadastrar a primeira turma? '
           />
         )}
       />
