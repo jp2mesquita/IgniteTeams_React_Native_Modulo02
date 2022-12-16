@@ -9,6 +9,8 @@ import { HighLight } from "@components/HighLight";
 import { Input } from "@components/Input";
 
 import { Container, Content, Icon } from "./styles";
+import { AppError } from "@utils/appError";
+import { Alert } from "react-native";
 
 export function NewGroup(){
   const [group, setGroup] = useState('')
@@ -21,7 +23,13 @@ export function NewGroup(){
       navigate('players', { group })
 
     } catch (error) {
-      console.log(error)
+      if(error instanceof AppError){
+        Alert.alert('Novo Grupo', error.message)
+      }else{
+        Alert.alert('Novo Grupo', 'Não foi possível criar um novo grupo')
+
+        console.log(error)
+      }
     }
   }
 
