@@ -18,6 +18,11 @@ export function NewGroup(){
   const { navigate } = useNavigation()
 
   async function handleNew(){
+    if (group.trim().length === 0 ) {
+      return Alert.alert('Novo Grupo', 'Informe o node da turma.')
+    }
+
+
     try {
       await groupCreate(group)
       navigate('players', { group })
