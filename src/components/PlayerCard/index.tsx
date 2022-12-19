@@ -4,12 +4,13 @@ import { Container, Icon, Name } from "./styles";
 
 interface PlayerCardProps{
   name: string
-  onRemove: () => void
+  group: string
+  onRemove: (name: string, group: string) => void
 }
 
 
 
-export function PlayerCard({ name, onRemove }: PlayerCardProps){
+export function PlayerCard({ name, group, onRemove }: PlayerCardProps){
   return(
     <Container>
       <Icon 
@@ -22,7 +23,7 @@ export function PlayerCard({ name, onRemove }: PlayerCardProps){
       <ButtonIcon 
         icon="close"
         type='SECONDARY'
-        onPress={onRemove}
+        onPress={() => onRemove(name, group)}
       />
     </Container>
   )
